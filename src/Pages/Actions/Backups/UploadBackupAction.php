@@ -6,7 +6,7 @@ use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
 use Filament\Support\Colors\Color;
-use ArabicSooq\EnvEditor\EnvEditor;
+use GeoSot\EnvEditor\EnvEditor;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class UploadBackupAction extends Action

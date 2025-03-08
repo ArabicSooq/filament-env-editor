@@ -5,8 +5,8 @@ namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
-use ArabicSooq\EnvEditor\Dto\EntryObj;
-use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use GeoSot\EnvEditor\Dto\EntryObj;
+use GeoSot\EnvEditor\Facades\EnvEditor;
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 
 class DeleteAction extends Action

@@ -4,8 +4,8 @@ namespace ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups;
 
 use Filament\Forms\Components\Actions\Action;
 use Filament\Support\Colors\Color;
-use ArabicSooq\EnvEditor\Exceptions\EnvException;
-use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use GeoSot\EnvEditor\Exceptions\EnvException;
+use GeoSot\EnvEditor\Facades\EnvEditor;
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 
 class MakeBackupAction extends Action

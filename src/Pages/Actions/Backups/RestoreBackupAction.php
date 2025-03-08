@@ -5,7 +5,7 @@ namespace ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
-use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use GeoSot\EnvEditor\Facades\EnvEditor;
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 
 class RestoreBackupAction extends Action

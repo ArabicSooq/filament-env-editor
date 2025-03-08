@@ -5,8 +5,8 @@ namespace ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups;
 use Filament\Forms\Components\Actions\Action;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
-use ArabicSooq\EnvEditor\Dto\BackupObj;
-use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use GeoSot\EnvEditor\Dto\BackupObj;
+use GeoSot\EnvEditor\Facades\EnvEditor;
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 
 class DeleteBackupAction extends Action
