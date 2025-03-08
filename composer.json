@@ -1,5 +1,5 @@
 {
-    "name": "geo-sot/filament-env-editor",
+    "name": "arabicsooq/filament-env-editor",
     "description": "Access .env file though Filament admin panel",
     "keywords": [
         "geo-sot",
@@ -8,10 +8,10 @@
         "EnvEditor",
         "filament-env-editor"
     ],
-    "homepage": "https://github.com/GeoSot/filament-env-editor",
+    "homepage": "https://github.com/ArabicSooq/filament-env-editor",
     "support": {
-        "issues": "https://github.com/GeoSot/filament-env-editor/issues",
-        "source": "https://github.com/GeoSot/filament-env-editor"
+        "issues": "https://github.com/ArabicSooq/filament-env-editor/issues",
+        "source": "https://github.com/ArabicSooq/filament-env-editor"
     },
     "license": "MIT",
     "authors": [
@@ -36,7 +36,7 @@
 },
     "autoload": {
         "psr-4": {
-            "GeoSot\\FilamentEnvEditor\\": "src/"
+            "ArabicSooq\\FilamentEnvEditor\\": "src/"
         }
     },
     "scripts": {
@@ -53,7 +53,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "GeoSot\\FilamentEnvEditor\\ServiceProvider"
+                "ArabicSooq\\FilamentEnvEditor\\ServiceProvider"
             ]
         }
     },

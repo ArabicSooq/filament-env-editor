@@ -1,6 +1,6 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages;
+namespace ArabicSooq\FilamentEnvEditor\Pages;
 
 use Filament\Forms;
 use Filament\Forms\Components\Component;
@@ -11,20 +11,20 @@ use Filament\Pages\Concerns\InteractsWithHeaderActions;
 use Filament\Pages\Page;
 use Filament\Support\Enums\ActionSize;
 use Filament\Tables\Table;
-use GeoSot\EnvEditor\Dto\BackupObj;
-use GeoSot\EnvEditor\Dto\EntryObj;
-use GeoSot\EnvEditor\Facades\EnvEditor;
-use GeoSot\FilamentEnvEditor\FilamentEnvEditorPlugin;
-use GeoSot\FilamentEnvEditor\Pages\Actions\Backups\DeleteBackupAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\Backups\DownloadEnvFileAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\Backups\MakeBackupAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\Backups\RestoreBackupAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\Backups\ShowBackupContentAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\Backups\UploadBackupAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\CreateAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\DeleteAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\EditAction;
-use GeoSot\FilamentEnvEditor\Pages\Actions\OptimizeClearAction;
+use ArabicSooq\EnvEditor\Dto\BackupObj;
+use ArabicSooq\EnvEditor\Dto\EntryObj;
+use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use ArabicSooq\FilamentEnvEditor\FilamentEnvEditorPlugin;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups\DeleteBackupAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups\DownloadEnvFileAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups\MakeBackupAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups\RestoreBackupAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups\ShowBackupContentAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups\UploadBackupAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\CreateAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\DeleteAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\EditAction;
+use ArabicSooq\FilamentEnvEditor\Pages\Actions\OptimizeClearAction;
 use Illuminate\Support\Collection;
 use Illuminate\Support\HtmlString;
 

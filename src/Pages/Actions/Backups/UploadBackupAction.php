@@ -1,12 +1,12 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages\Actions\Backups;
+namespace ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups;
 
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\BaseFileUpload;
 use Filament\Forms\Components\FileUpload;
 use Filament\Support\Colors\Color;
-use GeoSot\EnvEditor\EnvEditor;
+use ArabicSooq\EnvEditor\EnvEditor;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class UploadBackupAction extends Action

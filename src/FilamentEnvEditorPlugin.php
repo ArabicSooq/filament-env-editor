@@ -1,11 +1,11 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor;
+namespace ArabicSooq\FilamentEnvEditor;
 
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
-use GeoSot\FilamentEnvEditor\Pages\ViewEnv;
+use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 
 class FilamentEnvEditorPlugin implements Plugin
 {

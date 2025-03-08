@@ -1,16 +1,16 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages\Actions;
+namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 
 use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\MaxWidth;
-use GeoSot\EnvEditor\Dto\EntryObj;
-use GeoSot\EnvEditor\Exceptions\EnvException;
-use GeoSot\EnvEditor\Facades\EnvEditor;
-use GeoSot\FilamentEnvEditor\Pages\ViewEnv;
+use ArabicSooq\EnvEditor\Dto\EntryObj;
+use ArabicSooq\EnvEditor\Exceptions\EnvException;
+use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;

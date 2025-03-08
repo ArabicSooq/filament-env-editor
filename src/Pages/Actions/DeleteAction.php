@@ -1,13 +1,13 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages\Actions;
+namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 
 use Filament\Forms\Components\Actions\Action;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\ActionSize;
-use GeoSot\EnvEditor\Dto\EntryObj;
-use GeoSot\EnvEditor\Facades\EnvEditor;
-use GeoSot\FilamentEnvEditor\Pages\ViewEnv;
+use ArabicSooq\EnvEditor\Dto\EntryObj;
+use ArabicSooq\EnvEditor\Facades\EnvEditor;
+use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 
 class DeleteAction extends Action
 {

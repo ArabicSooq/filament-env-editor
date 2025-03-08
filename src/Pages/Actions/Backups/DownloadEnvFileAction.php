@@ -1,11 +1,11 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages\Actions\Backups;
+namespace ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups;
 
 use Filament\Forms\Components\Actions\Action;
 use Filament\Support\Colors\Color;
-use GeoSot\EnvEditor\EnvEditor;
-use GeoSot\EnvEditor\Exceptions\EnvException;
+use ArabicSooq\EnvEditor\EnvEditor;
+use ArabicSooq\EnvEditor\Exceptions\EnvException;
 
 class DownloadEnvFileAction extends Action
 {
