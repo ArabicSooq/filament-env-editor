@@ -4,13 +4,21 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/arabicsooq/filament-env-editor.svg?style=flat-square)](https://packagist.org/packages/arabicsooq/filament-env-editor)
 
 <p align="center">
-    <img src="https://github.com/ArabicSooq/filament-env-editor/assets/22406063/e53b56d9-3e2d-4943-b1bd-4b18b6d5fc15" alt="Banner" style="width: 100%; max-width: 800px; border-radius: 10px" />
+    <img src="https://github.com/GeoSot/filament-env-editor/assets/22406063/e53b56d9-3e2d-4943-b1bd-4b18b6d5fc15" alt="Banner" style="width: 100%; max-width: 800px; border-radius: 10px" />
 </p>
 
  A Simple .env file Viewer plugin for your Filament Panels.
  
  Provides features like, manage current .env variables, and a handy backup functionality page
 
+
+<br>
+ 
+## Important Notice: Original Author and Laravel 12 Support
+
+This repository is a modified version of [GeoSot/filament-env-editor](https://github.com/GeoSot/filament-env-editor) with adjustments to support Laravel 12. The original author of the package is [GeoSot](https://github.com/GeoSot).
+
+These modifications have been made to ensure compatibility with the latest Laravel releases, enabling users to leverage this valuable tool in their Laravel 12 environments.
 
 <br>
 
