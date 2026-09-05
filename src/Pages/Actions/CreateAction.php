@@ -3,6 +3,7 @@
 namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
+use ArabicSooq\FilamentEnvEditor\Support\EnvValidation;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\Components\Field;
@@ -35,6 +36,22 @@ class CreateAction extends Action
 
         $this->action(function (array $data, ViewEnv $page) {
             try {
+                if ($keyError = EnvValidation::validateKeyName($data['key'])) {
+                    $this->failureNotificationTitle($keyError);
+                    $this->failure();
+                    $this->halt();
+
+                    return;
+                }
+
+                if ($valueError = EnvValidation::validateValue($data['key'], $data['value'] ?? '')) {
+                    $this->failureNotificationTitle($valueError);
+                    $this->failure();
+                    $this->halt();
+
+                    return;
+                }
+
                 $options = Arr::get($data, 'index')
                     ? ['index' => Arr::get($data, 'index')]
                     : [];

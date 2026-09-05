@@ -13,6 +13,9 @@ use ArabicSooq\FilamentEnvEditor\Pages\Actions\CreateAction;
 use ArabicSooq\FilamentEnvEditor\Pages\Actions\DeleteAction;
 use ArabicSooq\FilamentEnvEditor\Pages\Actions\EditAction;
 use ArabicSooq\FilamentEnvEditor\Pages\Actions\OptimizeClearAction;
+use ArabicSooq\FilamentEnvEditor\Security\EnvSecurityChecker;
+use ArabicSooq\FilamentEnvEditor\Security\SecurityFinding;
+use ArabicSooq\FilamentEnvEditor\Support\EnvEntryStyler;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Pages\Concerns\HasUnsavedDataChangesAlert;
 use Filament\Pages\Concerns\InteractsWithFormActions;
@@ -59,6 +62,9 @@ class ViewEnv extends Page
             ->tabs([
                 Tab::make(__('filament-env-editor::filament-env-editor.tabs.current-env.title'))
                     ->schema(fn () => $this->getFirstTab()),
+                Tab::make(__('filament-env-editor::filament-env-editor.tabs.security.title'))
+                    ->schema(fn () => $this->getSecurityTab())
+                    ->hidden(fn (): bool => !FilamentEnvEditorPlugin::get()->isSecurityScanEnabled()),
                 Tab::make(__('filament-env-editor::filament-env-editor.tabs.backups.title'))
                     ->schema(fn () => $this->getSecondTab()),
             ]);
@@ -112,23 +118,41 @@ class ViewEnv extends Page
      */
     private function getFirstTab(): array
     {
+        $revealKeys = FilamentEnvEditorPlugin::get()->getRevealKeys();
+
         $envData = EnvEditor::getEnvFileContent()
             ->filter(fn (EntryObj $obj) => !$obj->isSeparator())
             ->groupBy('group')
-            ->map(function (Collection $group) {
+            ->map(function (Collection $group) use ($revealKeys) {
                 $fields = $group
                     ->reject(fn (EntryObj $obj) => $this->shouldHideEnvVariable($obj->key))
-                    ->map(function (EntryObj $obj) {
-                        return Group::make([
-                            Actions::make([
-                                EditAction::make("edit_{$obj->key}")->setEntry($obj),
-                                DeleteAction::make("delete_{$obj->key}")->setEntry($obj),
-                            ])->alignEnd(),
-                            TextEntry::make($obj->key)
+                    ->map(function (EntryObj $obj) use ($revealKeys) {
+                        $key = $obj->key;
+                        $color = EnvEntryStyler::colorForKey($key);
+                        $value = EnvEntryStyler::displayValue($obj, $revealKeys);
+
+                        $row = Group::make([
+                            TextEntry::make($key)
                                 ->hiddenLabel()
-                                ->state(new HtmlString("<code>{$obj->getAsEnvLine()}</code>"))
-                                ->columnSpan(4),
-                        ])->columns(5);
+                                ->badge()
+                                ->color($color)
+                                ->state(new HtmlString("<code class='fi-env-key'>{$key}</code>"))
+                                ->columnSpan(1),
+                            TextEntry::make("value_{$key}")
+                                ->hiddenLabel()
+                                ->state(new HtmlString(
+                                    "<code class='fi-env-line'>{$value}</code>"
+                                ))
+                                ->columnSpan(3),
+                            Actions::make([
+                                EditAction::make("edit_{$key}")->setEntry($obj),
+                                DeleteAction::make("delete_{$key}")->setEntry($obj),
+                            ])->alignEnd()->columnSpan(1),
+                        ])->columns(5)->extraAttributes([
+                            'class' => 'fi-env-row',
+                        ]);
+
+                        return $row;
                     })
                     ->values();
 
@@ -192,5 +216,77 @@ class ViewEnv extends Page
         ]);
 
         return [$header, ...$data];
+    }
+
+    /**
+     * @return list<Component>
+     */
+    private function getSecurityTab(): array
+    {
+        $checker = app(EnvSecurityChecker::class);
+        $findings = $checker->scan();
+        $score = $checker->score();
+
+        $scoreColor = match (true) {
+            $score >= 80 => 'success',
+            $score >= 50 => 'warning',
+            default => 'danger',
+        };
+
+        $summary = Group::make([
+            TextEntry::make('security_score')
+                ->hiddenLabel()
+                ->badge()
+                ->color($scoreColor)
+                ->state(new HtmlString(
+                    __('filament-env-editor::filament-env-editor.security.score', ['score' => $score])
+                )),
+            TextEntry::make('security_summary')
+                ->hiddenLabel()
+                ->state($this->scoreDescription($score))
+                ->color($scoreColor),
+        ])->columns(2)->extraAttributes(['class' => 'fi-env-security-score']);
+
+        $rows = $findings
+            ->map(function (SecurityFinding $finding): Group {
+                return Group::make([
+                    TextEntry::make("finding_{$finding->key}_{$finding->level->value}")
+                        ->hiddenLabel()
+                        ->state($finding->key)
+                        ->badge()
+                        ->color(EnvEntryStyler::colorForKey($finding->key))
+                        ->columnSpan(1),
+                    TextEntry::make("finding_msg_{$finding->key}_{$finding->level->value}")
+                        ->hiddenLabel()
+                        ->state($finding->message)
+                        ->columnSpan(3),
+                    TextEntry::make("finding_level_{$finding->key}_{$finding->level->value}")
+                        ->hiddenLabel()
+                        ->state($finding->level->label())
+                        ->badge()
+                        ->color($finding->level->color())
+                        ->columnSpan(1),
+                ])->columns(5);
+            })
+            ->all();
+
+        $empty = Group::make([
+            TextEntry::make('security_ok')
+                ->hiddenLabel()
+                ->badge()
+                ->color('success')
+                ->state(__('filament-env-editor::filament-env-editor.security.ok')),
+        ]);
+
+        return [$summary, ...(collect($rows)->isEmpty() ? [$empty] : $rows)];
+    }
+
+    private function scoreDescription(int $score): string
+    {
+        return match (true) {
+            $score >= 80 => __('filament-env-editor::filament-env-editor.security.status.good'),
+            $score >= 50 => __('filament-env-editor::filament-env-editor.security.status.attention'),
+            default => __('filament-env-editor::filament-env-editor.security.status.critical'),
+        };
     }
 }

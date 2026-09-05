@@ -3,6 +3,7 @@
 namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
+use ArabicSooq\FilamentEnvEditor\Support\EnvValidation;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Support\Colors\Color;
@@ -51,6 +52,27 @@ class EditAction extends Action
         ]);
 
         $this->action(function (array $data, ViewEnv $page) {
+            $key = $data['key'];
+            $value = $data['value'] ?? '';
+
+            if (!EnvValidation::canEmptyKey($key) && blank($value)) {
+                $this->failureNotificationTitle(
+                    __('filament-env-editor::filament-env-editor.validation.value.cannotEmptyCritical', ['key' => $key])
+                );
+                $this->failure();
+                $this->halt();
+
+                return;
+            }
+
+            if ($valueError = EnvValidation::validateValue($key, $value)) {
+                $this->failureNotificationTitle($valueError);
+                $this->failure();
+                $this->halt();
+
+                return;
+            }
+
             $result = EnvEditor::editKey($data['key'], $data['value']);
             $result ? $this->success() : $this->failure();
             $page->triggerRefresh();

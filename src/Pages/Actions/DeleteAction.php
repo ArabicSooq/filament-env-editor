@@ -2,7 +2,9 @@
 
 namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 
+use ArabicSooq\FilamentEnvEditor\FilamentEnvEditorPlugin;
 use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
+use ArabicSooq\FilamentEnvEditor\Support\EnvValidation;
 use Filament\Actions\Action;
 use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Support\Colors\Color;
@@ -51,6 +53,16 @@ class DeleteAction extends Action
         ));
 
         $this->action(function (ViewEnv $page) {
+            if (!EnvValidation::canDeleteKey($this->entryKey, FilamentEnvEditorPlugin::get()->getProtectKeys())) {
+                $this->failureNotificationTitle(
+                    __('filament-env-editor::filament-env-editor.validation.delete.protected', ['key' => $this->entryKey])
+                );
+                $this->failure();
+                $this->halt();
+
+                return;
+            }
+
             $result = EnvEditor::deleteKey($this->entryKey);
 
             $result ? $this->success() : $this->failure();

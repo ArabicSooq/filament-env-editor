@@ -30,6 +30,22 @@ class FilamentEnvEditorPlugin implements Plugin
      */
     protected array $hideKeys = [];
 
+    /**
+     * Keys whose (sensitive) values are allowed to be shown unmasked.
+     *
+     * @var list<string>
+     */
+    protected array $revealKeys = [];
+
+    /**
+     * Extra keys (or wildcard prefixes like "AWS_*") that must not be deleted.
+     *
+     * @var list<string>
+     */
+    protected array $protectKeys = [];
+
+    protected bool|\Closure $securityScanEnabled = true;
+
     public function getId(): string
     {
         return 'filament-env-editor';
@@ -162,5 +178,47 @@ class FilamentEnvEditorPlugin implements Plugin
     public function getHiddenKeys(): array
     {
         return $this->hideKeys;
+    }
+
+    public function revealKeys(string ...$keys): static
+    {
+        $this->revealKeys = $keys;
+
+        return $this;
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function getRevealKeys(): array
+    {
+        return $this->revealKeys;
+    }
+
+    public function protectKeys(string ...$keys): static
+    {
+        $this->protectKeys = $keys;
+
+        return $this;
+    }
+
+    /**
+     * @return list<string>
+     */
+    public function getProtectKeys(): array
+    {
+        return $this->protectKeys;
+    }
+
+    public function securityScan(bool|\Closure $enabled = true): static
+    {
+        $this->securityScanEnabled = $enabled;
+
+        return $this;
+    }
+
+    public function isSecurityScanEnabled(): bool
+    {
+        return (bool) $this->evaluate($this->securityScanEnabled);
     }
 }
