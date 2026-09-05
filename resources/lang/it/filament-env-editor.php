@@ -13,8 +13,86 @@ return [
         'current-env' => [
             'title' => '.env Attivo',
         ],
+        'security' => [
+            'title' => 'Sicurezza',
+        ],
         'backups' => [
             'title' => 'Backups',
+        ],
+    ],
+    'security' => [
+        'score' => 'Punteggio di sicurezza: :score / 100',
+        'ok' => 'Nessun problema di sicurezza rilevato nel file .env corrente.',
+        'status' => [
+            'good' => 'Il tuo file .env sembra sano. Continua così.',
+            'attention' => 'Alcune impostazioni meritano attenzione prima della messa in produzione.',
+            'critical' => 'Il tuo file .env contiene problemi critici. Risolvili subito.',
+        ],
+        'severity' => [
+            'info' => 'Info',
+            'warning' => 'Avviso',
+            'critical' => 'Critico',
+        ],
+        'findings' => [
+            'emptyValue' => [
+                'message' => 'La variabile :key è vuota.',
+                'suggestion' => 'Inserisci un valore significativo o rimuovi la voce.',
+            ],
+            'dangerousValue' => [
+                'message' => 'La variabile :key contiene un valore potenzialmente pericoloso (command injection).',
+                'suggestion' => 'Rimuovi operatori di shell, backtick o nomi di comandi dal valore.',
+            ],
+            'weakSecret' => [
+                'message' => 'La variabile :key utilizza una password debole molto nota.',
+                'suggestion' => 'Genera un valore forte e unico.',
+            ],
+            'shortSecret' => [
+                'message' => 'La variabile :key sembra troppo corta per essere un segreto.',
+                'suggestion' => 'Usa almeno 8 caratteri casuali.',
+            ],
+            'insecureUrl' => [
+                'message' => ':key usa HTTP semplice mentre l\'app è in :env.',
+                'suggestion' => 'Passa a https:// in produzione.',
+            ],
+            'localhostUrl' => [
+                'message' => ':key punta a localhost mentre l\'app è in produzione.',
+                'suggestion' => 'Punta a un hostname o servizio pubblico.',
+            ],
+            'debugEnabled' => [
+                'message' => 'La modalità debug è attiva mentre l\'app è in produzione.',
+                'suggestion' => 'Imposta APP_DEBUG su false.',
+            ],
+            'emptyAppKey' => [
+                'message' => 'APP_KEY è vuota.',
+                'suggestion' => 'Esegui "php artisan key:generate".',
+            ],
+            'invalidAppKey' => [
+                'message' => 'APP_KEY sembra non valida (dovrebbe essere una stringa base64:).',
+                'suggestion' => 'Esegui "php artisan key:generate" e aggiorna il valore.',
+            ],
+            'noValidAppKey' => [
+                'message' => 'Nessuna APP_KEY base64 valida trovata in produzione.',
+                'suggestion' => 'Genera e imposta una APP_KEY valida prima della messa in produzione.',
+            ],
+            'productionMailDriver' => [
+                'message' => 'La posta è impostata su un driver locale mentre l\'app è in produzione.',
+                'suggestion' => 'Usa un vero trasporto di posta (smtp, ses, mailgun...).',
+            ],
+        ],
+    ],
+    'validation' => [
+        'key' => [
+            'required' => 'Il nome della chiave è obbligatorio.',
+            'tooLong' => 'Il nome della chiave non deve superare i 100 caratteri.',
+            'invalid' => 'Il nome della chiave può contenere solo lettere, numeri e underscore.',
+        ],
+        'value' => [
+            'dangerous' => 'Questo valore non è consentito: sembra un comando o contiene caratteri non sicuri.',
+            'suspiciousFlag' => 'Questo valore sembra un flag di riga di comando sospetto.',
+            'cannotEmptyCritical' => 'La variabile :key è richiesta dal framework e non può essere svuotata qui.',
+        ],
+        'delete' => [
+            'protected' => 'La variabile :key è protetta e non può essere eliminata.',
         ],
     ],
     'actions' => [

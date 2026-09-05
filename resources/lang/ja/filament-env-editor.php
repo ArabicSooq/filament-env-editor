@@ -13,8 +13,86 @@ return [
         'current-env' => [
             'title' => '現状の.env',
         ],
+        'security' => [
+            'title' => 'セキュリティ',
+        ],
         'backups' => [
             'title' => 'バックアップ',
+        ],
+    ],
+    'security' => [
+        'score' => 'セキュリティスコア: :score / 100',
+        'ok' => '現在の .env ファイルにセキュリティ上の問題は検出されませんでした。',
+        'status' => [
+            'good' => '.env ファイルは健全です。この状態を維持してください。',
+            'attention' => '本番公開の前に注意すべき設定があります。',
+            'critical' => '.env ファイルに重大な問題があります。今すぐ修正してください。',
+        ],
+        'severity' => [
+            'info' => '情報',
+            'warning' => '警告',
+            'critical' => '重大',
+        ],
+        'findings' => [
+            'emptyValue' => [
+                'message' => ':key 変数が空です。',
+                'suggestion' => '意味のある値を設定するか、エントリーを削除してください。',
+            ],
+            'dangerousValue' => [
+                'message' => ':key 変数には危険な可能性のある値（コマンドインジェクション）が含まれています。',
+                'suggestion' => '値からシェル演算子、バッククォート、コマンド名を削除してください。',
+            ],
+            'weakSecret' => [
+                'message' => ':key 変数は既知の弱い秘密値を使用しています。',
+                'suggestion' => '強力で一意な値を生成してください。',
+            ],
+            'shortSecret' => [
+                'message' => ':key 変数は秘密値としては短すぎるようです。',
+                'suggestion' => '8文字以上のランダムな文字列を使用してください。',
+            ],
+            'insecureUrl' => [
+                'message' => 'アプリが :env のときに :key が平文の HTTP を使用しています。',
+                'suggestion' => '本番環境では https:// に切り替えてください。',
+            ],
+            'localhostUrl' => [
+                'message' => 'アプリが本番環境のときに :key が localhost を指しています。',
+                'suggestion' => '公開ホスト名またはサービスを指定してください。',
+            ],
+            'debugEnabled' => [
+                'message' => 'アプリが本番環境なのにデバッグモードが有効です。',
+                'suggestion' => 'APP_DEBUG を false に設定してください。',
+            ],
+            'emptyAppKey' => [
+                'message' => 'APP_KEY が空です。',
+                'suggestion' => '"php artisan key:generate" を実行してください。',
+            ],
+            'invalidAppKey' => [
+                'message' => 'APP_KEY が無効のようです（base64: 文字列である必要があります）。',
+                'suggestion' => '"php artisan key:generate" を実行して値を更新してください。',
+            ],
+            'noValidAppKey' => [
+                'message' => '本番環境で有効な base64 APP_KEY が見つかりません。',
+                'suggestion' => '本番公開前に有効な APP_KEY を生成して設定してください。',
+            ],
+            'productionMailDriver' => [
+                'message' => 'アプリが本番環境なのにメールがローカルドライバーに設定されています。',
+                'suggestion' => '実際のメールトランスポート（smtp、ses、mailgun など）を使用してください。',
+            ],
+        ],
+    ],
+    'validation' => [
+        'key' => [
+            'required' => 'キー名は必須です。',
+            'tooLong' => 'キー名は100文字を超えてはなりません。',
+            'invalid' => 'キー名には英数字とアンダースコアのみ使用できます。',
+        ],
+        'value' => [
+            'dangerous' => 'この値は許可されていません: コマンドのように見えるか、安全でない文字が含まれています。',
+            'suspiciousFlag' => 'この値は不審なコマンドラインオプションのように見えます。',
+            'cannotEmptyCritical' => ':key 変数はフレームワークに必要であり、ここでは空にできません。',
+        ],
+        'delete' => [
+            'protected' => ':key 変数は保護されており、削除できません。',
         ],
     ],
     'actions' => [
