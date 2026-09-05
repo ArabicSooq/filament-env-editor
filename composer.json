@@ -20,11 +20,6 @@
         {
             "name": "ArabicSooq",
             "homepage": "https://github.com/ArabicSooq"
-        },
-        {
-            "name": "Geo Sot",
-            "email": "geo.sotis@gmail.com",
-            "role": "Original Author"
         }
     ],
     "require": {

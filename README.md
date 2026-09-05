@@ -5,30 +5,22 @@
 [![PHPStan](https://img.shields.io/badge/PHPStan-level%208-brightgreen.svg?style=flat-square)](https://github.com/ArabicSooq/filament-env-editor)
 [![License](https://img.shields.io/github/license/ArabicSooq/filament-env-editor?style=flat-square)](LICENSE.md)
 
-<div dir="rtl" align="center">
-    <img src="https://github.com/GeoSot/filament-env-editor/assets/22406063/e53b56d9-3e2d-4943-b1bd-4b18b6d5fc15" alt="Banner" style="width: 100%; max-width: 800px; border-radius: 10px" />
-</div>
-
 A simple, yet powerful **.env file editor** plugin for your Filament Panels.
 
 Manage your current `.env` variables straight from the admin panel, with a handy **backup** functionality page to keep your environment safe.
 
 <br>
 
-## About this package
+## What this package does
 
-This package is a **maintained and re-developed fork** of the excellent
-[GeoSot/filament-env-editor](https://github.com/GeoSot/filament-env-editor).
-
-We merged the best of both worlds:
-
-- The latest **Filament 5** codebase (Schema API, improved refresh flow, better UI) from the upstream repository.
-- The **Arabic documentation** and **Laravel 12/13 support** originally contributed in the `ArabicSooq` fork.
-- Fixed multiple bugs that existed in the older fork (broken page refresh, duplicate component keys, editable key names, missing success/error feedback).
-
-The package remains **fully independent** and does not depend on any application-specific code.
-
-> **Credits:** All credit for the original package goes to [Geo Sot](https://github.com/GeoSot). This fork only adds maintenance, fixes, and additional language support.
+- **View and manage `.env` variables** directly from your Filament panel, without ever touching the server.
+- **Create, edit, and delete** keys and change their values through a graphical interface.
+- **Full backup of the current `.env` file** and saved, restorable backups.
+- **Restore any backup** in one click to roll your environment back to a previous state.
+- **Download and upload backups** to keep or import copies locally.
+- **Hide sensitive keys** (such as `APP_KEY`) so they never appear in the interface.
+- **Flexible customization** of navigation, the page, and access control through plugin configuration.
+- Compatible with **Filament 5** and **Laravel 12/13**.
 
 <br>
 
