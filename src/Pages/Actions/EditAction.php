@@ -1,14 +1,14 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages\Actions;
+namespace ArabicSooq\FilamentEnvEditor\Pages\Actions;
 
+use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 use Filament\Actions\Action;
 use Filament\Forms\Components\TextInput;
 use Filament\Support\Colors\Color;
 use Filament\Support\Enums\Size;
 use GeoSot\EnvEditor\Dto\EntryObj;
 use GeoSot\EnvEditor\Facades\EnvEditor;
-use GeoSot\FilamentEnvEditor\Pages\ViewEnv;
 
 class EditAction extends Action
 {

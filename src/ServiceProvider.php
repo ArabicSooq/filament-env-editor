@@ -1,6 +1,6 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor;
+namespace ArabicSooq\FilamentEnvEditor;
 
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
@@ -12,7 +12,7 @@ class ServiceProvider extends PackageServiceProvider
     {
         $package->name('filament-env-editor')
             ->hasInstallCommand(function (InstallCommand $command) {
-                $command->askToStarRepoOnGitHub('geo-sot/filament-env-editor');
+                $command->askToStarRepoOnGitHub('arabicsooq/filament-env-editor');
             })
             ->hasTranslations()
             ->hasViews();

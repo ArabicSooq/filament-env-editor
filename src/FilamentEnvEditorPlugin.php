@@ -1,11 +1,11 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor;
+namespace ArabicSooq\FilamentEnvEditor;
 
+use ArabicSooq\FilamentEnvEditor\Pages\ViewEnv;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
-use GeoSot\FilamentEnvEditor\Pages\ViewEnv;
 
 class FilamentEnvEditorPlugin implements Plugin
 {
@@ -77,6 +77,14 @@ class FilamentEnvEditorPlugin implements Plugin
         $this->viewPage = $page;
 
         return $this;
+    }
+
+    /**
+     * @return class-string<ViewEnv>
+     */
+    public function getViewPage(): string
+    {
+        return $this->viewPage;
     }
 
     public function navigationGroup(string|\Closure|null $navigationGroup): static

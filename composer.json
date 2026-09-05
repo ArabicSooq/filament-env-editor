@@ -1,30 +1,37 @@
 {
-    "name": "geo-sot/filament-env-editor",
+    "name": "arabicsooq/filament-env-editor",
     "description": "Access .env file though Filament admin panel",
     "keywords": [
-        "geo-sot",
+        "arabicsooq",
         "laravel",
         "laravel-env-editor",
         "EnvEditor",
-        "filament-env-editor"
+        "filament-env-editor",
+        "env",
+        "backup"
     ],
-    "homepage": "https://github.com/GeoSot/filament-env-editor",
+    "homepage": "https://github.com/ArabicSooq/filament-env-editor",
     "support": {
-        "issues": "https://github.com/GeoSot/filament-env-editor/issues",
-        "source": "https://github.com/GeoSot/filament-env-editor"
+        "issues": "https://github.com/ArabicSooq/filament-env-editor/issues",
+        "source": "https://github.com/ArabicSooq/filament-env-editor"
     },
     "license": "MIT",
     "authors": [
         {
+            "name": "ArabicSooq",
+            "homepage": "https://github.com/ArabicSooq"
+        },
+        {
             "name": "Geo Sot",
-            "email": "geo.sotis@gmail.com"
+            "email": "geo.sotis@gmail.com",
+            "role": "Original Author"
         }
     ],
     "require": {
         "php": "^8.2",
         "filament/filament": "~5.0",
         "geo-sot/laravel-env-editor": "^3.0",
-        "illuminate/contracts": ">=12.0",
+        "illuminate/contracts": "^12.0|^13.0",
         "spatie/laravel-package-tools": "^1.15.0"
     },
     "require-dev": {
@@ -36,14 +43,21 @@
     },
     "autoload": {
         "psr-4": {
-            "GeoSot\\FilamentEnvEditor\\": "src/"
+            "ArabicSooq\\FilamentEnvEditor\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ArabicSooq\\FilamentEnvEditor\\Tests\\": "tests/"
         }
     },
     "scripts": {
-        "phpstan": "php --version && php vendor/bin/phpstan --version && php -d memory_limit=1G vendor/bin/phpstan analyse -c ruleset-phpstan.neon  -vvv --ansi",
+        "phpstan": "php --version && php vendor/bin/phpstan --version && php -d memory_limit=1G vendor/bin/phpstan analyse -c ruleset-phpstan.neon -vvv --ansi",
+        "test": "php vendor/bin/phpunit -c phpunit.xml",
         "cs": "./vendor/bin/php-cs-fixer fix -vvv --show-progress=dots --config=ruleset-php_cs.php --ansi",
         "all": [
             "@phpstan",
+            "@test",
             "@cs"
         ]
     },
@@ -53,7 +67,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "GeoSot\\FilamentEnvEditor\\ServiceProvider"
+                "ArabicSooq\\FilamentEnvEditor\\ServiceProvider"
             ]
         }
     },

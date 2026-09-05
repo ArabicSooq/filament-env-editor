@@ -1,6 +1,6 @@
 <?php
 
-namespace GeoSot\FilamentEnvEditor\Pages\Actions\Backups;
+namespace ArabicSooq\FilamentEnvEditor\Pages\Actions\Backups;
 
 use Filament\Actions\Action;
 use Filament\Forms\Components\BaseFileUpload;
